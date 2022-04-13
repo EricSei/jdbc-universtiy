@@ -1,13 +1,18 @@
 package com.cognixia.jump.model;
 
-public interface Account {
+public abstract class Account {
 	
-	int balance=0;
+	int accountId;
 	
-	boolean deposit(int amount);
+	int balance;
 	
-	boolean withDraw(int amount);
+	String type;
 	
-	boolean fundTransfer(int amount, Account to);
+	abstract boolean deposit(int amount);
+	
+	abstract boolean withDraw(int amount);
+	
+	abstract boolean fundTransfer(int amount, Account to);
+	
 	
 }

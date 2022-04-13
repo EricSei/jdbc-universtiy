@@ -1,6 +1,6 @@
 package com.cognixia.jump.model;
 
-public class Saving implements Account {
+public class Saving extends Account {
 	
 	@Override
 	public boolean deposit(int amount) {

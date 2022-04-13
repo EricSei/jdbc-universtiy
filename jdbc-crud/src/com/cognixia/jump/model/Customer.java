@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Customer {
 	
+	
+
 	private int customer_id;
 	private String name;
 	
@@ -54,6 +56,12 @@ public class Customer {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	@Override
+	public String toString() {
+		return "Customer [customer_id=" + customer_id + ", name=" + name + ", email=" + email + ", accounts=" + accounts
+				+ ", password=" + password + "]";
 	}
 	
 	
