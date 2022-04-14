@@ -5,13 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.cognixia.jump.jdbc.connection.ConnectionManager;
-import com.cognixia.jump.model.Account;
-import com.cognixia.jump.model.Customer;
 import com.cognixia.jump.model.Debit;
 
 public class DebitDAOClass {
 	
 	private Connection conn = ConnectionManager.getConnection();
+	
+	
 	
 	public  boolean createAccount(Debit debit) {
 		PreparedStatement pstmt = null;
@@ -40,7 +40,6 @@ public class DebitDAOClass {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
 		return result > 0;

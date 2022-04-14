@@ -11,6 +11,7 @@ public class Debit extends Account {
 	
 	private int customer_id;
 	
+	//get transcations by account id
 	private List<Transaction> transactions = null;
 	
 	
