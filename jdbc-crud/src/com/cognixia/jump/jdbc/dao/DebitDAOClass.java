@@ -11,7 +11,38 @@ public class DebitDAOClass {
 	
 	private Connection conn = ConnectionManager.getConnection();
 	
-	
+	//1. makde deposite, make transaction
+	public boolean makeDeposit(int bankAccountId, int depositeAmmount) {
+		
+		PreparedStatement pstmt = null;
+		String queryString = "UPDATE Account SET balance=? where account_id=?";
+		
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(queryString);
+			pstmt.setInt(1, depositeAmmount);
+			pstmt.setInt(2,  bankAccountId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			try {
+				
+				pstmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return result > 0;
+	}
 	
 	public  boolean createAccount(Debit debit) {
 		PreparedStatement pstmt = null;

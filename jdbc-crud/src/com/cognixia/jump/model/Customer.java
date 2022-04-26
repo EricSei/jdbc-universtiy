@@ -8,6 +8,9 @@ public class Customer {
 	
 
 	private int customer_id;
+	
+	
+
 	private String name;
 	
 	private String email;
@@ -23,6 +26,15 @@ public class Customer {
 		this.email = email;
 		this.accounts = new ArrayList<Account>();
 		this.password = password;
+	}
+	
+	public int getCustomer_id() {
+		return customer_id;
+	}
+
+
+	public void setCustomer_id(int customer_id) {
+		this.customer_id = customer_id;
 	}
 
 

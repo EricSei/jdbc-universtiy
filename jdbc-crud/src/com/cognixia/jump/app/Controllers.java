@@ -52,6 +52,23 @@ public class Controllers {
 			return null;
 			
 		}
+		
+		public static boolean makeDeposit() {
+			DebitDAOClass debitDao = new DebitDAOClass();
+			
+			int bankAccountId = 0;
+			int depositAmount = 0;
+			
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Select or Enter Bank Acount Id");
+			bankAccountId = sc.nextInt();
+			
+			System.out.println("Enter Deposit Amount: ");
+			depositAmount = sc.nextInt();
+			
+			return debitDao.makeDeposit(bankAccountId, depositAmount);
+			
+		}
 	}
 	
 	public static class AuthController{

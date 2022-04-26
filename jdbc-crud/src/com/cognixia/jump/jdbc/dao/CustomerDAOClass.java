@@ -12,6 +12,7 @@ import com.cognixia.jump.model.Customer;
 public class CustomerDAOClass {
 	
 	private Connection conn = ConnectionManager.getConnection();
+	
 
 	
 	public boolean createCustomer(Customer customer) {

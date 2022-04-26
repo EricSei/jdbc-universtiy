@@ -13,13 +13,15 @@ public class AuthDAO {
 	private Connection conn = ConnectionManager.getConnection();
 	
 	//params: email, password
+	//retur customer: id, email, pw
 	public Customer login(Customer customer) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "Select email, password from customer \r\n"
+		String sql = "Select customer_id, email, password from customer \r\n"
 				+ "    where customer.email = ? ";
 		
+		int storedId = -1;
 		String storedEmail = null;
 		String storedPassword = null;
 		//query customer with email and check password
@@ -29,6 +31,7 @@ public class AuthDAO {
 			 pstmt.setString(1, customer.getEmail());
 			 rs = pstmt.executeQuery();
 			 while(rs.next()) {
+				 storedId = rs.getInt("customer_id");
 				 storedEmail = rs.getString("email");
 				 storedPassword = rs.getString("password");
 				 
@@ -41,6 +44,7 @@ public class AuthDAO {
 		boolean isExist =  customer.getEmail().equals(storedEmail) && 
 				customer.getPassword().equals(storedPassword);
 		if(isExist) {
+			customer.setCustomer_id(storedId);
 			return customer;
 		}
 		

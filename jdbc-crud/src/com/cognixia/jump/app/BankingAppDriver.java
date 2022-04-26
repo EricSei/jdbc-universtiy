@@ -12,10 +12,11 @@ import com.cognixia.jump.model.MainMenu;
 
 public class BankingAppDriver {
 	
+	public static boolean isAuth = false;
 
 
 	public static void main(String[] args) {
-		boolean isAuth = false;
+		
 		
 		System.out.println("Banking App Running...");
 		
@@ -26,7 +27,7 @@ public class BankingAppDriver {
 		
 		do {
 			
-			if(!isAuth) {
+			if(!BankingAppDriver.isAuth) {
 				System.out.println(Menu.displayLandingMenu());
 			}else {
 				System.out.println(Menu.displayAuthMenu());
@@ -39,25 +40,41 @@ public class BankingAppDriver {
 			switch(option) {
 				case 1:
 					created = Controllers.CustomerController.createCustomer();
-					isAuth = true;
+					BankingAppDriver.isAuth = true;
 					System.out.println(created.toString());
 					break;
 				case 2:
 					loggedCustomer = Controllers.AuthController.login();
-					isAuth = true;
+					BankingAppDriver.isAuth = true;
 					System.out.println(loggedCustomer.toString());
 					System.out.println("You are logged in... ");
 					break;
 				case 3:
+					Controllers.AccountController.createAccount(loggedCustomer.getCustomer_id());
 					System.out.print("Accounted Created.");
+				case 4:
+					System.out.print("Make Deposit");
+					if(Controllers.AccountController.makeDeposit()) {
+						System.out.println("Deposit Successful.");
+					}else {
+						System.out.println("Deposit failed.");
+					}
+					break;
+				case 5:
+					System.out.println("-------------Last 5 Transactions-------------");
+					break;
+				case 10:
+					System.out.println("You are logging out ! ");
+					BankingAppDriver.isAuth = false;
+					break;
 				default:
-					System.out.println("Thanks for using Banking App");
+					System.out.println("========Select A Menu to continue============");
 			}
 			
 			
 		}while(option != 10);
 		
-		System.out.println("Thanks for using Baniking App ... :) ");
+
 	}
 	
 	public static void getUserInput() {
